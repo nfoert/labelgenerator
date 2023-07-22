@@ -118,8 +118,10 @@ class Card:
 
             
             if stat[1] == True:
+  
                 icon_iter += 1
-                canvas.drawInlineImage(image_name, icon_iter * (inch * 0.37), self.y + (inch * 0.1), width=(inch * 0.35), height=(inch * 0.35))
+                canvas.drawInlineImage(image_name, self.x + (icon_iter * (inch * 0.37)), self.y + (inch * 0.1), width=(inch * 0.35), height=(inch * 0.35))
+
 
             else:
                 line_iter += 1
@@ -202,6 +204,12 @@ except FileExistsError:
     print(Fore.GREEN + "📁 Oh! That event already exists.")
     working_card = card1
 
+except FileNotFoundError:
+    print("\n")
+    print(Fore.RED + "⚠ There was a problem making your folder. " + Fore.YELLOW + "We'll continue anyway.")
+    print("\n")
+    working_card = card1
+
 while True:
     try:
         print(Back.BLUE + Fore.MAGENTA + f" 📃 Currently working on card {working_card.num}. " + Fore.RESET + Back.RESET)
@@ -267,9 +275,10 @@ while True:
         elif working_card.num == 8: break
 
         print(Fore.YELLOW + f"You're finished with card {working_card.num - 1}.")
-        quit_question = input(Fore.GREEN + "Would you like to quit? [y/n] ")
+        quit_question = input(Fore.GREEN + "Would you like to quit and export your PDF? y/n] ")
         if quit_question == "y":
             print(Fore.GREEN + "Goodbye! 👋" + Fore.RESET)
+            input(Fore.CYAN + "Press enter to continue...")
             break
 
     except KeyboardInterrupt:
@@ -278,5 +287,7 @@ while True:
 canvas.save()
 
 if developmental == False:
+    print(Fore.GREEN + "You're finished with all 8 cards." + Fore.RESET)
+    input(Fore.CYAN + "Press enter to continue...")
     webbrowser.open("labels.pdf")
 
