@@ -275,7 +275,7 @@ while True:
         elif working_card.num == 8: break
 
         print(Fore.YELLOW + f"You're finished with card {working_card.num - 1}.")
-        quit_question = input(Fore.GREEN + "Would you like to quit and export your PDF? y/n] ")
+        quit_question = input(Fore.GREEN + "Would you like to quit and export your PDF? [y/n] ")
         if quit_question == "y":
             print(Fore.GREEN + "Goodbye! 👋" + Fore.RESET)
             input(Fore.CYAN + "Press enter to continue...")
